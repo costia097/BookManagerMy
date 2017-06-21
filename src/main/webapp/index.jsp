@@ -2,12 +2,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>Proselyte</title>
+  <title>Login</title>
 </head>
 <body>
-    <h3>Proselyte presents</h3>
-    <br/>
-      <a href="<c:url value="/books"/>" target="_blank">Book list</a>
-    <br/>
+    <form name="login" method="post" action="/login">
+        <h3>Login:</h3>
+        <input type="text" name="login"/>
+        <h3>Password:</h3>
+        <input type="password"  name="password">
+    </form>
 </body>
 </html>
