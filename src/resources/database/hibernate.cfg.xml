@@ -10,6 +10,7 @@
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
         <mapping class="net.model.Books"/>
+        <mapping class="net.model.Users"/>
         <!--<mapping clanet.model.BookssBook"/>-->
         <!--<mapping class="net.model"></mapping>-->
     </session-factory>

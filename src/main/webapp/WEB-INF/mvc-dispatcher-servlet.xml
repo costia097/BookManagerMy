@@ -31,6 +31,7 @@
         <property name="annotatedClasses">
             <list>
                 <value>net.model.Books</value>
+                <value>net.model.Users</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -49,6 +50,15 @@
 
     <bean id="bookService" class="net.service.Book_service_impl">
         <property name="bookDao" ref="bookDao"/>
+    </bean>
+
+    <!--UsersDao and UsersServiceBean-->
+    <bean id="usersDao" class="net.dao.UserDao_impl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="usersService" class="net.service.UserService_Impl">
+        <property name="usersDao" ref="usersDao"/>
     </bean>
 
     <context:component-scan base-package="net"/>

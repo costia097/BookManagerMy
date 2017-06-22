@@ -10,6 +10,12 @@
         <input type="text" name="login"/>
         <h3>Password:</h3>
         <input type="password"  name="password">
+        <input type="submit" value="Отправить">
     </form>
+
+Music
+
+<%--${beanExample.name}--%>
+
 </body>
 </html>

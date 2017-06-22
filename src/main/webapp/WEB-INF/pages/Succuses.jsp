@@ -12,5 +12,16 @@
 </head>
 <body>
 
+
+<%--Your login is: ${model.name}--%>
+<%--Your password is: ${model.password}--%>
+
+<%--Your id is: ${id}--%>
+
+
+
+
+<%--${users.login}--%>
+<%--${users.password}--%>
 </body>
 </html>
