@@ -16,6 +16,7 @@ public class Users {
     private String password;
     private String email;
     private byte[] music;
+    private String bio;
 
     @Id
     @Column(name = "id")
@@ -58,13 +59,13 @@ public class Users {
     }
 
     @Basic
-    @Column(name = "music")
-    public byte[] getMusic() {
-        return music;
+    @Column(name = "bio")
+    public String getBio() {
+        return bio;
     }
 
-    public void setMusic(byte[] music) {
-        this.music = music;
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     @Override
@@ -79,8 +80,7 @@ public class Users {
         if (password != null ? !password.equals(users.password) : users.password != null) return false;
         if (email != null ? !email.equals(users.email) : users.email != null) return false;
         if (!Arrays.equals(music, users.music)) return false;
-
-        return true;
+        return bio != null ? bio.equals(users.bio) : users.bio == null;
     }
 
     @Override
@@ -90,6 +90,7 @@ public class Users {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + Arrays.hashCode(music);
+        result = 31 * result + (bio != null ? bio.hashCode() : 0);
         return result;
     }
 }

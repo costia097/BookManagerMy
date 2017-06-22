@@ -5,7 +5,9 @@
   <title>Login</title>
 </head>
 <body>
-    <form name="login" method="post" action="/login">
+
+ <h3>Just login </h3>
+    <form name="login" method="post" action="/logging/login">
         <h3>Login:</h3>
         <input type="text" name="login"/>
         <h3>Password:</h3>
@@ -13,9 +15,7 @@
         <input type="submit" value="Отправить">
     </form>
 
-Music
-
-<%--${beanExample.name}--%>
+ <h3>OR <a href="WEB-INF/pages/logging/Register.jsp">Register NOW!!!</a></h3>
 
 </body>
 </html>

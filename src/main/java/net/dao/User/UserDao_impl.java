@@ -1,5 +1,6 @@
-package net.dao;
+package net.dao.User;
 
+import net.dao.Book.Book_Dao_Impl;
 import net.model.Users;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,12 +29,14 @@ public class UserDao_impl implements UsersDao {
     }
 
     @Override
-    public void updateUser(Users users) {
-
-    }
-
-    @Override
     public void deleteUser(int id) {
-
+        Session currentSession = sessionFactory.getCurrentSession();
+        Users users = (Users) currentSession.load(Users.class, id);
+        if (users != null) {
+            currentSession.delete(users);
+        } else {
+            log.info("User is havent!: "+users);
+        }
+        sessionFactory.close();//TODO ?????
     }
 }

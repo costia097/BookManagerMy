@@ -39,25 +39,27 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
                 </prop>
                 <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/books</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
             </props>
         </property>
     </bean>
 
     <!--BookDao and BookService beans-->
-    <bean id="bookDao" class="net.dao.Book_Dao_Impl">
+    <bean id="bookDao" class="net.dao.Book.Book_Dao_Impl">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
 
-    <bean id="bookService" class="net.service.Book_service_impl">
+    <bean id="bookService" class="net.service.Book.Book_service_impl">
         <property name="bookDao" ref="bookDao"/>
     </bean>
 
     <!--UsersDao and UsersServiceBean-->
-    <bean id="usersDao" class="net.dao.UserDao_impl">
+    <bean id="usersDao" class="net.dao.User.UserDao_impl">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
 
-    <bean id="usersService" class="net.service.UserService_Impl">
+    <bean id="usersService" class="net.service.User.UserService_Impl">
         <property name="usersDao" ref="usersDao"/>
     </bean>
 

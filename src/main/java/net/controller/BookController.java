@@ -1,7 +1,7 @@
 package net.controller;
 
 import net.model.Books;
-import net.service.BookService;
+import net.service.Book.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +26,7 @@ public class BookController {
     public String listBooks(Model model) {
         model.addAttribute("books", new Books());
         model.addAttribute("listBooks", this.bookService.listBooks());
-        return "books";
+        return "context/books";
     }
 
     @RequestMapping(value = "/books/add", method = RequestMethod.POST)
@@ -49,12 +49,12 @@ public class BookController {
     public String editBook(@PathVariable("id") int id, Model model) {
         model.addAttribute("books", this.bookService.getBookById(id));
         model.addAttribute("listBooks", this.bookService.listBooks());
-        return "books";
+        return "context/books";
     }
 
     @RequestMapping("bookdata/{id}")
     public String bookData(@PathVariable("id") int id, Model model) {
         model.addAttribute("books", this.bookService.getBookById(id));
-        return "bookdata";
+        return "context/bookdata";
     }
 }

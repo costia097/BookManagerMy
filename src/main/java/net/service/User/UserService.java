@@ -1,4 +1,4 @@
-package net.service;
+package net.service.User;
 
 import net.model.Users;
 
@@ -7,8 +7,6 @@ import net.model.Users;
  */
 public interface UserService {
     void addUser(Users users);
-
-    void updateUser(Users users);
 
     void deleteUser(int id);
 }

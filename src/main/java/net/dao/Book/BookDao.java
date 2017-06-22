@@ -1,4 +1,4 @@
-package net.service;
+package net.dao.Book;
 
 import net.model.Books;
 
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by BeNdEr on 19.06.2017.
  */
-public interface BookService {
+public interface BookDao {
     void addBook(Books books);
 
     void updateBook(Books books);

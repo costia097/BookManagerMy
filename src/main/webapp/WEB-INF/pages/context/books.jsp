@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<a href="../../index.jsp">Back to main menu</a>
+<a href="../../../index.jsp">Back to main menu</a>
 
 <br/>
 <br/>

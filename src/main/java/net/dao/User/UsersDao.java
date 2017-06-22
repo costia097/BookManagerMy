@@ -1,4 +1,4 @@
-package net.dao;
+package net.dao.User;
 
 import net.model.Users;
 
@@ -7,8 +7,6 @@ import net.model.Users;
  */
 public interface UsersDao {
     void addUser(Users users);
-
-    void updateUser(Users users);
 
     void deleteUser(int id);
 }

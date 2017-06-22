@@ -60,9 +60,9 @@
       <Position>4</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="22" parent="12" name="music">
+    <column id="22" parent="12" name="bio">
       <Position>5</Position>
-      <DataType>longblob|0</DataType>
+      <DataType>varchar(200)|0</DataType>
     </column>
     <index id="23" parent="12" name="email_UNIQUE">
       <ColNames>email</ColNames>

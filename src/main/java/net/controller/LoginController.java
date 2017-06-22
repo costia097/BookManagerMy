@@ -1,7 +1,7 @@
 package net.controller;
 
 import net.model.Users;
-import net.service.UserService;
+import net.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by BeNdEr on 21.06.2017.
  */
 @Controller
+@RequestMapping(value = "/logging")
 public class LoginController {
     private UserService service;
 
@@ -35,12 +36,34 @@ public class LoginController {
 //       }
 //    }
 
+
+    //TODO Spring SECURITy!!!
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam("login")String login,@RequestParam("password")String password) {
+
+
+//        if () {
+//            return "";
+//        } else {
+//            return "";
+//        }
+        return null;
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String register(@RequestParam("login")String login,
+                           @RequestParam("password")String password,
+                           @RequestParam("email")String email,
+                           @RequestParam("bio")String bio) {
+
         Users users = new Users();
         users.setLogin(login);
         users.setPassword(password);
+        users.setEmail(email);
+        users.setBio(bio);
         service.addUser(users);
-        return "Succuses";
+
+        return "/index.jsp";
     }
+
 }

@@ -1,7 +1,8 @@
-package net.service;
+package net.service.User;
 
-import net.dao.UsersDao;
+import net.dao.User.UsersDao;
 import net.model.Users;
+import net.service.User.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserService_Impl implements UserService {
     private UsersDao usersDao;
-
 
     public void setUsersDao(UsersDao usersDao) {
         this.usersDao = usersDao;
@@ -23,11 +23,6 @@ public class UserService_Impl implements UserService {
         usersDao.addUser(users);
     }
 
-    @Override
-    @Transactional
-    public void updateUser(Users users) {
-
-    }
 
     @Override
     @Transactional
