@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by BeNdEr on 21.06.2017.
  */
 @Controller
-@RequestMapping(value = "/logging")
+@RequestMapping(value = "/loging")
 public class LoginController {
     private UserService service;
 
@@ -35,6 +35,11 @@ public class LoginController {
 //        return new ModelAndView("Succuses","id",id);
 //       }
 //    }
+
+    @RequestMapping(value = "/regist", method = RequestMethod.GET)
+    public String regist() {
+        return "logging/Register";
+    }
 
 
     //TODO Spring SECURITy!!!
@@ -62,7 +67,7 @@ public class LoginController {
         users.setBio(bio);
         service.addUser(users);
 
-        return "/index.jsp";
+        return "/context/index";
     }
 
 }

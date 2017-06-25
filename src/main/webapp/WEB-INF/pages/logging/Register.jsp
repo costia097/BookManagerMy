@@ -13,7 +13,7 @@
 <body>
 
 <%--//TODO VALIDATOR!!!--%>
-<form action="/logging/register">
+<form action="/loging/register" method="post">
 <h3>Login:</h3> <input type="text" name="login"/>
 <h3>Password:</h3> <input type="password" name="password"/>
 <h3>Email:</h3> <input type="text" name="email"/>
