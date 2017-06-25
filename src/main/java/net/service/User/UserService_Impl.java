@@ -29,4 +29,12 @@ public class UserService_Impl implements UserService {
     public void deleteUser(int id) {
 
     }
+
+    @Override
+    @Transactional
+    public boolean checkUser(String login, String password) {
+        return usersDao.checkUser(login, password);
+    }
+
+
 }

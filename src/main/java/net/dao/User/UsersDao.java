@@ -9,4 +9,6 @@ public interface UsersDao {
     void addUser(Users users);
 
     void deleteUser(int id);
+
+    boolean checkUser(String login,String password);
 }

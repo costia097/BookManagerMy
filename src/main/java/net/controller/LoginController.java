@@ -41,13 +41,12 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam("login")String login,@RequestParam("password")String password) {
 
+        if (service.checkUser(login, password)) {
+            return "context/bookdata";
+        } else {
+            return "logging/Unsuccuses";
+        }
 
-//        if () {
-//            return "";
-//        } else {
-//            return "";
-//        }
-        return null;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)

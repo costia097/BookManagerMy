@@ -18,16 +18,9 @@ public class Users {
     private byte[] music;
     private String bio;
 
+
+
     @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     @Basic
     @Column(name = "login")
     public String getLogin() {

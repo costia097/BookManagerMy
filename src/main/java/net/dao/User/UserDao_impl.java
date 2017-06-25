@@ -37,6 +37,13 @@ public class UserDao_impl implements UsersDao {
         } else {
             log.info("User is havent!: "+users);
         }
-        sessionFactory.close();//TODO ?????
+//        sessionFactory.close();//TODO ?????
+    }
+
+    @Override
+    public boolean checkUser(String login, String password) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Users users = (Users) currentSession.load(Users.class,login);
+        return users != null && users.getPassword().equals(password);
     }
 }
