@@ -19,7 +19,7 @@
           destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url"
-                  value="jdbc:mysql://localhost:3306/books"/>
+                  value="jdbc:mysql://localhost:3306/sys"/>
         <property name="username" value="root"/>
         <property name="password" value="root"/>
     </bean>
@@ -39,7 +39,7 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
                 </prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/books</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/sys</prop>
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
             </props>
         </property>

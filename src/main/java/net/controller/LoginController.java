@@ -46,11 +46,16 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam("login")String login,@RequestParam("password")String password) {
 
-        if (service.checkUser(login, password)) {
-            return "context/bookdata";
-        } else {
+
+        try {
+            if (service.checkUser(login, password)) {
+                return "context/Succuses";
+            }
+        } catch (Exception e) {
             return "logging/Unsuccuses";
         }
+
+        return "logging/Unsuccuses";
 
     }
 
@@ -65,7 +70,12 @@ public class LoginController {
         users.setPassword(password);
         users.setEmail(email);
         users.setBio(bio);
-        service.addUser(users);
+
+        try {
+            service.addUser(users);
+        } catch (Exception e) {
+            return "/logging/Unsuccuses";
+        }
 
         return "/context/index";
     }

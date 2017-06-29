@@ -2,7 +2,6 @@ package net.service.User;
 
 import net.dao.User.UsersDao;
 import net.model.Users;
-import net.service.User.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
