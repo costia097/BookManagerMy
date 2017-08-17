@@ -1,7 +1,9 @@
 package net.service;
 
 import net.dao.BookDao;
+import net.dao.Book_Dao_Impl;
 import net.model.Books;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,41 +14,33 @@ import java.util.List;
  */
 @Service
 public class Book_service_impl implements BookService {
-    private BookDao bookDao;
 
-    public void setBookDao(BookDao bookDao) {
-        this.bookDao = bookDao;
+    @Autowired
+    private Book_Dao_Impl bookDao;
+
+
+    @Transactional
+    public void addBook(Books book) {
+        bookDao.addBook(book);
     }
 
-    @Override
-    @Transactional
-    public void addBook(Books books) {
-        this.bookDao.addBook(books);
-    }
 
-    @Override
-    @Transactional
     public void updateBook(Books books) {
-        this.bookDao.updateBook(books);
+        //TODO
     }
 
-    @Override
-    @Transactional
+
     public void deleteBook(int id) {
-        this.bookDao.deleteBook(id);
+        //TODO
     }
 
-    @Override
-    @Transactional
+
     public Books getBookById(int id) {
-        Books books = this.bookDao.getBookById(id);
-        return books;
+        return null;
     }
 
-    @Override
-    @Transactional
+
     public List<Books> listBooks() {
-        List<Books> books = this.bookDao.listBooks();
-        return books;
+        return null;
     }
 }

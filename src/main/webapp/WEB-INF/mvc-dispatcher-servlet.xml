@@ -43,13 +43,9 @@
     </bean>
 
     <!--BookDao and BookService beans-->
-    <bean id="bookDao" class="net.dao.Book_Dao_Impl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
-    </bean>
-
-    <bean id="bookService" class="net.service.Book_service_impl">
-        <property name="bookDao" ref="bookDao"/>
-    </bean>
+    <!--<bean id="bookDao" class="net.dao.Book_Dao_Impl">-->
+        <!--<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>-->
+    <!--</bean>-->
 
     <context:component-scan base-package="net"/>
 

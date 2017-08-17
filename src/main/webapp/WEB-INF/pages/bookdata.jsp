@@ -25,7 +25,7 @@
       word-break: normal;
       border-color: #ccc;
       color: #333;
-      background-color: #fff;
+      background-color: #ff9444;
     }
 
     .tg th {
@@ -59,10 +59,10 @@
     <th width="120">Price</th>
   </tr>
   <tr>
-    <td>${books.id}</td>
-    <td>${books.bookTitle}</td>
-    <td>${books.bookAuthor}</td>
-    <td>${books.price/100}${books.price%100}</td>
+    <%--<td>${id}</td>--%>
+    <%--<td>${bookTitle}</td>--%>
+    <%--<td>${bookAuthor}</td>--%>
+    <%--<td>${price/100}${books.price%100}</td>--%>
   </tr>
 </table>
 </body>

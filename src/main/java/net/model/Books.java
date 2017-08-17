@@ -1,16 +1,19 @@
 package net.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 
-/**
- * Created by BeNdEr on 19.06.2017.
- */
 @Entity
-public class Books {
+public class Books implements Serializable{
     private int id;
+    @NotEmpty(message = "Please ener here something")
+    @Size(min = 6,max = 20, message = "Book title must be from 6 to 20 characters!!")
     private String bookTitle;
     private String bookAuthor;
     private int price;
@@ -26,7 +29,7 @@ public class Books {
     }
 
     @Basic
-    @Column(name = "Book_title")
+    @Column(name = "bookTitle")
     public String getBookTitle() {
         return bookTitle;
     }
@@ -36,7 +39,7 @@ public class Books {
     }
 
     @Basic
-    @Column(name = "Book_author")
+    @Column(name = "bookAuthor")
     public String getBookAuthor() {
         return bookAuthor;
     }
@@ -46,7 +49,7 @@ public class Books {
     }
 
     @Basic
-    @Column(name = "Price")
+    @Column(name = "price")
     public int getPrice() {
         return price;
     }
@@ -77,15 +80,5 @@ public class Books {
         result = 31 * result + (bookAuthor != null ? bookAuthor.hashCode() : 0);
         result = 31 * result + price;
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Books{" +
-                "id=" + id +
-                ", bookTitle='" + bookTitle + '\'' +
-                ", bookAuthor='" + bookAuthor + '\'' +
-                ", price=" + price +
-                '}';
     }
 }
