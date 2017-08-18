@@ -50,20 +50,7 @@
 </head>
 <body>
 <h1>Book Details</h1>
-
-<table class="tg">
-  <tr>
-    <th width="80">ID</th>
-    <th width="120">Title</th>
-    <th width="120">Author</th>
-    <th width="120">Price</th>
-  </tr>
-  <tr>
-    <%--<td>${id}</td>--%>
-    <%--<td>${bookTitle}</td>--%>
-    <%--<td>${bookAuthor}</td>--%>
-    <%--<td>${price/100}${books.price%100}</td>--%>
-  </tr>
+<h3>Hello ${user}</h3>
 </table>
 </body>
 </html>

@@ -16,9 +16,9 @@
 </head>
 <body>
 <div align="center">
-    <h2>Login Form</h2>
+    <h2>Registration form</h2>
     <table border="0" width="90%">
-        <form:form action="/login" commandName="userLogin" method="post">
+        <form:form action="registration" commandName="userRegist">
             <tr>
                 <td align="left" width="20%">Login: </td>
                 <td align="left" width="40%"><form:input path="loggin" size="30"/></td>
@@ -30,14 +30,19 @@
                 <td><form:errors path="password" cssClass="error"/></td>
             </tr>
             <tr>
+                <td>Email: </td>
+                <td><form:input path="email" size="30"/></td>
+                <td><form:errors path="email" cssClass="error"/></td>
+            </tr>
+            <tr>
                 <td></td>
-                <td align="center"><input type="submit" value="Login"/></td>
+                <td align="center"><input type="submit" value="Registrate Now"/></td>
                 <td></td>
             </tr>
         </form:form>
     </table>
-</div>
 
-<a href="/">Go back toMain menu</a>
+    <a href="/">Go back toMain menu</a>
+</div>
 </body>
 </html>
