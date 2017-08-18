@@ -6,14 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by BeNdEr on 19.06.2017.
+ * Created by BeNdEr on 29.06.2017.
  */
 @Entity
 public class Books {
     private int id;
     private String bookTitle;
     private String bookAuthor;
-    private int price;
+    private int bookPrice;
 
     @Id
     @Column(name = "id")
@@ -26,7 +26,7 @@ public class Books {
     }
 
     @Basic
-    @Column(name = "Book_title")
+    @Column(name = "book_title")
     public String getBookTitle() {
         return bookTitle;
     }
@@ -36,7 +36,7 @@ public class Books {
     }
 
     @Basic
-    @Column(name = "Book_author")
+    @Column(name = "book_author")
     public String getBookAuthor() {
         return bookAuthor;
     }
@@ -46,13 +46,13 @@ public class Books {
     }
 
     @Basic
-    @Column(name = "Price")
-    public int getPrice() {
-        return price;
+    @Column(name = "book_price")
+    public int getBookPrice() {
+        return bookPrice;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setBookPrice(int bookPrice) {
+        this.bookPrice = bookPrice;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Books {
         Books books = (Books) o;
 
         if (id != books.id) return false;
-        if (price != books.price) return false;
+        if (bookPrice != books.bookPrice) return false;
         if (bookTitle != null ? !bookTitle.equals(books.bookTitle) : books.bookTitle != null) return false;
         if (bookAuthor != null ? !bookAuthor.equals(books.bookAuthor) : books.bookAuthor != null) return false;
 
@@ -75,17 +75,7 @@ public class Books {
         int result = id;
         result = 31 * result + (bookTitle != null ? bookTitle.hashCode() : 0);
         result = 31 * result + (bookAuthor != null ? bookAuthor.hashCode() : 0);
-        result = 31 * result + price;
+        result = 31 * result + bookPrice;
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Books{" +
-                "id=" + id +
-                ", bookTitle='" + bookTitle + '\'' +
-                ", bookAuthor='" + bookAuthor + '\'' +
-                ", price=" + price +
-                '}';
     }
 }

@@ -1,4 +1,4 @@
-package net.dao;
+package net.dao.Book;
 
 import net.model.Books;
 import org.hibernate.Session;

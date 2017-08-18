@@ -1,6 +1,6 @@
-package net.service;
+package net.service.Book;
 
-import net.dao.BookDao;
+import net.dao.Book.BookDao;
 import net.model.Books;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

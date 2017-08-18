@@ -23,7 +23,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="database:hibernate.cfg.xml" value="e9ac5334-f763-473e-b894-0247b26c2dd9" />
+          <unit-entry name="database:hibernate.cfg.xml" value="f04b08c8-20a0-4f75-97d4-2551960f3421" />
           <unit-entry name="hibernate4AnnotatedSessionFactory" value="dataSource" />
         </datasource-map>
         <naming-strategy-map />
@@ -91,6 +91,14 @@
     <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.7" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.36" level="project" />
-    <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:4.3.5.Final" level="project" />
+    <orderEntry type="library" name="Maven: javax.mail:mail:1.4.7" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.velocity:velocity:1.7" level="project" />
+    <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
+    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.4" level="project" />
+    <orderEntry type="library" name="Maven: jstl:jstl:1.2" level="project" />
+    <orderEntry type="library" name="Maven: taglibs:standard:1.1.2" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.faces:jsf-api:2.1.13" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.faces:jsf-impl:2.1.13" level="project" />
   </component>
 </module>
