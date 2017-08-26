@@ -1,10 +1,12 @@
-package net.service;
+package net.service.UserService;
 
-import net.dao.UserDao;
+import net.dao.UserDao.UserDao;
 import net.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Random;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -14,18 +16,20 @@ public class UserServiceImp implements UserService {
 
     @Override
     public boolean addUser(User user) {
-        try {
-
-            boolean b = userDao.addUser(user);
-            return b;
-        } catch (Exception e) {
-            return false;
-        }
+        boolean b = userDao.addUser(user);
+        return b;
     }
 
     @Override
     @Transactional
     public void deleteUser(User user) {
         userDao.deleteUser(user);
+    }
+
+    @Override
+    public int generateCode(User user) {
+        Random random = new Random();
+        int i = random.nextInt();
+        return i;
     }
 }

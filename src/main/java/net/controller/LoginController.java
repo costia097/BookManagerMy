@@ -1,11 +1,9 @@
 package net.controller;
 
-import net.dao.UserDao;
-import net.model.Books;
+import net.dao.UserDao.UserDao;
 import net.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,24 +25,24 @@ public class LoginController {
     public String viewLogin(ModelMap modelMap) {
         User user = new User();
         modelMap.put("userLogin", user);
-        return "loginForm";
+        return "login/loginForm";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String hello(@Valid @ModelAttribute("userLogin") User user, BindingResult result, ModelMap modelMap) {
         if (!result.hasErrors()) {
-            return "loginForm";
+            return "login/loginForm";
         } else {
             try {
                 User user1 = userDao.checkUser(user);
                 if (user1 == null) {
-                    return "unsuLoggin";
+                    return "login/unsuLoggin";
                 }
                 modelMap.put("user", user1);
                 return "bookdata";
 
             } catch (Exception e) {
-                return "unsuLoggin";
+                return "login/unsuLoggin";
             }
         }
     }

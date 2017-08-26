@@ -1,117 +1,88 @@
 package net.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Arrays;
 
 @Entity
 @Table(name = "books")
 public class Books implements Serializable {
-    private int id;
-    @NotEmpty(message = "Please ener here something")
-    @Size(min = 6, max = 20, message = "Book title must be from 6 to 20 characters!!")
-    private String bookTitle;
-    private String bookAuthor;
-    private int price;
-    private byte[] context;
-    private int userId;
-
     @Id
-    @Column(name = "id_book")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "book_id")
+    private Integer book_id;
 
-    public int getId() {
-        return id;
+    @Column(name = "book_name")
+    private String book_name;
+
+    @Column(name = "book_author")
+    private String book_author;
+
+    @Column(name = "book_image")
+    private byte[] book_image;
+
+    @Column(name = "book_context")
+    private byte[] book_context;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
+
+    public Books(String book_name, String book_author, User user) {
+        this.book_name = book_name;
+        this.book_author = book_author;
+        this.user = user;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getBook_id() {
+        return book_id;
     }
 
-    @Basic
-    @Column(name = "bookTitle")
-    public String getBookTitle() {
-        return bookTitle;
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
     }
 
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
+    public String getBook_name() {
+        return book_name;
     }
 
-    @Basic
-    @Column(name = "bookAuthor")
-    public String getBookAuthor() {
-        return bookAuthor;
+    public void setBook_name(String book_name) {
+        this.book_name = book_name;
     }
 
-    public void setBookAuthor(String bookAuthor) {
-        this.bookAuthor = bookAuthor;
+    public String getBook_author() {
+        return book_author;
     }
 
-    @Basic
-    @Column(name = "price")
-    public int getPrice() {
-        return price;
+    public void setBook_author(String book_author) {
+        this.book_author = book_author;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public byte[] getBook_image() {
+        return book_image;
     }
 
-    @Basic
-    @Column(name = "book")
-    public byte[] getContext() {
-        return context;
+    public void setBook_image(byte[] book_image) {
+        this.book_image = book_image;
     }
 
-    public void setContext(byte[] context) {
-        this.context = context;
+    public byte[] getBook_context() {
+        return book_context;
     }
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "id_user")
-    public int getUserId() {
-        return userId;
+    public void setBook_context(byte[] book_context) {
+        this.book_context = book_context;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public User getUser() {
+        return user;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Books books = (Books) o;
-
-        if (id != books.id) return false;
-        if (price != books.price) return false;
-        if (bookTitle != null ? !bookTitle.equals(books.bookTitle) : books.bookTitle != null) return false;
-        if (bookAuthor != null ? !bookAuthor.equals(books.bookAuthor) : books.bookAuthor != null) return false;
-        return Arrays.equals(context, books.context);
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (bookTitle != null ? bookTitle.hashCode() : 0);
-        result = 31 * result + (bookAuthor != null ? bookAuthor.hashCode() : 0);
-        result = 31 * result + price;
-        result = 31 * result + Arrays.hashCode(context);
-        return result;
-    }
 
-    @Override
-    public String toString() {
-        return "Books{" +
-                "id=" + id +
-                ", bookTitle='" + bookTitle + '\'' +
-                ", bookAuthor='" + bookAuthor + '\'' +
-                ", price=" + price +
-                ", context=" + Arrays.toString(context) +
-                '}';
-    }
+
+
 }

@@ -32,6 +32,7 @@
             <list>
                 <value>net.model.Books</value>
                 <value>net.model.User</value>
+                <value>net.model.Test</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -44,7 +45,7 @@
     </bean>
 
     <!--BookDao and BookService beans-->
-    <!--<bean id="bookDao" class="net.dao.Book_Dao_Impl">-->
+    <!--<bean id="bookDao" class="net.dao.BookDao.Book_Dao_Impl">-->
         <!--<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>-->
     <!--</bean>-->
 

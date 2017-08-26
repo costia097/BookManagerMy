@@ -1,4 +1,4 @@
-package net.service;
+package net.service.BookService;
 
 import net.model.Books;
 

@@ -11,6 +11,8 @@
         <property name="hbm2ddl.auto">update</property>
         <mapping class="net.model.Books"/>
         <mapping class="net.model.User"/>
+        <mapping class="net.model.modelsGenerated.Books"/>
+        <mapping class="net.model.modelsGenerated.User"/>
         <!--<mapping clanet.model.BookssBook"/>-->
         <!--<mapping class="net.model"></mapping>-->
     </session-factory>

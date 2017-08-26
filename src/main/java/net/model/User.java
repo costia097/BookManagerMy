@@ -6,91 +6,108 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private Integer user_id;
+
     @NotEmpty
-    @Size(min = 4,max = 20,message = "Login title must be from 6 to 20 characters!")
-    private String loggin;
+    @Size(min = 4,max = 25,message = "Login title must be from 6 to 20 characters!Nigga!!!")
+    @Column(name = "user_login")
+    private String user_login;
+
     @NotEmpty
-    @Size(min = 4,max = 20,message = "Login title must be from 6 to 20 characters!")
-    private String password;
-    private long sessionId;
+    @Size(min = 4,max = 30,message = "Login title must be from 6 to 20 characters!Bitch")
+    @Column(name = "user_password")
+    private String user_password;
+
     @NotEmpty
     @Email
-    private String email;
+    @Column(name = "user_email")
+    private String user_email;
 
-    @Id
-    @Column(name = "login")
-    public String getLoggin() {
-        return loggin;
+    @Column(name = "user_bio")
+    private String user_bio;
+
+    @Column(name = "user_status")
+    private String user_status;
+
+    @Column(name = "user_code")
+    private int user_code;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<Books> books;
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getUser_login() {
+        return user_login;
+    }
+
+    public void setUser_login(String user_login) {
+        this.user_login = user_login;
+    }
+
+    public String getUser_password() {
+        return user_password;
+    }
+
+    public void setUser_password(String user_password) {
+        this.user_password = user_password;
+    }
+
+    public String getUser_email() {
+        return user_email;
+    }
+
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
+    }
+
+    public String getUser_bio() {
+        return user_bio;
+    }
+
+    public void setUser_bio(String user_bio) {
+        this.user_bio = user_bio;
+    }
+
+    public Set<Books> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Books> books) {
+        this.books = books;
+    }
+
+    public String getUser_status() {
+        return user_status;
+    }
+
+    public void setUser_status(String user_status) {
+        this.user_status = user_status;
+    }
+
+    public int getUser_code() {
+        return user_code;
+    }
+
+    public void setUser_code(int user_code) {
+        this.user_code = user_code;
     }
 
 
-    public void setLoggin(String loggin) {
-        this.loggin = loggin;
-    }
 
-    @Basic
-    @Column(name = "password")
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Basic
-    @Column(name = "session_id")
-    public long getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(long sessionId) {
-        this.sessionId = sessionId;
-    }
-
-    @Basic
-    @Column(name = "email")
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        if (sessionId != user.sessionId) return false;
-        if (loggin != null ? !loggin.equals(user.loggin) : user.loggin != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        return email != null ? email.equals(user.email) : user.email == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = loggin != null ? loggin.hashCode() : 0;
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (int) (sessionId ^ (sessionId >>> 32));
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "loggin='" + loggin + '\'' +
-                ", password='" + password + '\'' +
-                ", sessionId=" + sessionId +
-                ", email='" + email + '\'' +
-                '}';
-    }
 }

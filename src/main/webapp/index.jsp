@@ -12,5 +12,8 @@
 <br>
 <br>
 <h3>If you want login <a href="/login">Click!!</a></h3>
+
+<h3>Test</h3>
+<a href="/test">Test</a>
 </body>
 </html>

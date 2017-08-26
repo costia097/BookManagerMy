@@ -1,7 +1,6 @@
-package net.service;
+package net.service.BookService;
 
-import net.dao.BookDao;
-import net.dao.Book_Dao_Impl;
+import net.dao.BookDao.Book_Dao_Impl;
 import net.model.Books;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

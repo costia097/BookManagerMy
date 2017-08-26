@@ -16,33 +16,28 @@
 </head>
 <body>
 <div align="center">
-    <h2>Registration form</h2>
+    <h2>Login Form</h2>
     <table border="0" width="90%">
-        <form:form action="registration" commandName="userRegist">
+        <form:form action="/login" commandName="userLogin" method="post">
             <tr>
                 <td align="left" width="20%">Login: </td>
-                <td align="left" width="40%"><form:input path="loggin" size="30"/></td>
-                <td align="left"><form:errors path="loggin" cssClass="error"/></td>
+                <td align="left" width="40%"><form:input path="user_login" size="30"/></td>
+                <td align="left"><form:errors path="user_login" cssClass="error"/></td>
             </tr>
             <tr>
                 <td>Password: </td>
-                <td><form:password path="password" size="30"/></td>
-                <td><form:errors path="password" cssClass="error"/></td>
-            </tr>
-            <tr>
-                <td>Email: </td>
-                <td><form:input path="email" size="30"/></td>
-                <td><form:errors path="email" cssClass="error"/></td>
+                <td><form:password path="user_password" size="30"/></td>
+                <td><form:errors path="user_password" cssClass="error"/></td>
             </tr>
             <tr>
                 <td></td>
-                <td align="center"><input type="submit" value="Registrate Now"/></td>
+                <td align="center"><input type="submit" value="Login"/></td>
                 <td></td>
             </tr>
         </form:form>
     </table>
-
-    <a href="/">Go back toMain menu</a>
 </div>
+
+<a href="/">Go back toMain menu</a>
 </body>
 </html>

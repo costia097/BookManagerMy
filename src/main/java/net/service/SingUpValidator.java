@@ -18,9 +18,8 @@ public class SingUpValidator implements Validator {
         Books books = (Books) target;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"bookTitle","bookTitle.empty","bookTitle must not be empty");
-        String bookTitle = books.getBookTitle();
-        if (bookTitle.length() > 20) {
+//        String bookTitle = books.getBookTitle();
+//        if (bookTitle.length() > 20) {
             errors.rejectValue("bookTitle","bookTitle.tooLong","bookTitle must be not more than 20 characters");
         }
     }
-}
