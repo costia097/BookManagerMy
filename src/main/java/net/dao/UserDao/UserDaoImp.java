@@ -1,6 +1,7 @@
 package net.dao.UserDao;
 
 import net.model.Books;
+import net.model.Test;
 import net.model.User;
 import net.service.IdChekerService;
 import org.hibernate.Session;
@@ -33,23 +34,14 @@ public class UserDaoImp implements UserDao {
     public boolean addUser(User user) {
         Session currentSession = sessionFactory.getCurrentSession();
         /*
-        So i have exeptions when iam trying to save just user so ithink me need to add some books by default. Must work!!!
+        So i have exeptions when iam trying to save just user so i think me need to add some books by default. Must work!!!
          */
-
-
-//            Set<Books> set = new HashSet<Books>();
-//
-//
-//            Books books1 = new Books("A","A", user);
-//            Books books2 = new Books("B","A", user);
-//            Books books3 = new Books("C","A", user);
-//
-//            set.add(books1);
-//            set.add(books2);
-//            set.add(books3);
-
-        //TODO WTF with forein key???
-        currentSession.persist(user);
+        Set<Books> set = new HashSet<Books>();
+        Books books1 = new Books("a","AA",user);
+        set.add(books1);
+        user.setBooks(set);
+        user.setUser_status("checked");
+        currentSession.save(user);
         log.info("User added: "+user);
         return true;
     }
