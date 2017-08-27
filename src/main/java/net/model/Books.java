@@ -24,9 +24,21 @@ public class Books implements Serializable {
     @Column(name = "book_context")
     private byte[] book_context;
 
+    @Column(name = "book_url_img")
+    private String book_url_img;
+
+    @Column(name = "book_audio")
+    private byte[] book_audio;
+
+    @Column(name = "book_audio_url")
+    private String book_audio_url;
+
     @ManyToOne
     @JoinColumn(name = "user_id",nullable = false)
     private User user;
+
+    public Books() {
+    }
 
     public Books(String book_name, String book_author, User user) {
         this.book_name = book_name;
@@ -82,7 +94,27 @@ public class Books implements Serializable {
         this.user = user;
     }
 
+    public String getBook_url_img() {
+        return book_url_img;
+    }
 
+    public void setBook_url_img(String book_url_img) {
+        this.book_url_img = book_url_img;
+    }
 
+    public byte[] getBook_audio() {
+        return book_audio;
+    }
 
+    public void setBook_audio(byte[] book_audio) {
+        this.book_audio = book_audio;
+    }
+
+    public String getBook_audio_url() {
+        return book_audio_url;
+    }
+
+    public void setBook_audio_url(String book_audio_url) {
+        this.book_audio_url = book_audio_url;
+    }
 }

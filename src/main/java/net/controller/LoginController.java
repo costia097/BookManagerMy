@@ -28,6 +28,7 @@ public class LoginController {
         return "login/loginForm";
     }
 
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String hello(@Valid @ModelAttribute("userLogin") User user, BindingResult result, ModelMap modelMap) {
         if (!result.hasErrors()) {
