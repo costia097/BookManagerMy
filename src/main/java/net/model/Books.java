@@ -1,91 +1,88 @@
 package net.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Arrays;
 
-/**
- * Created by BeNdEr on 19.06.2017.
- */
 @Entity
-public class Books {
-    private int id;
-    private String bookTitle;
-    private String bookAuthor;
-    private int price;
-
+@Table(name = "books")
+public class Books implements Serializable {
     @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "book_id")
+    private Integer book_id;
+
+    @Column(name = "book_name")
+    private String book_name;
+
+    @Column(name = "book_author")
+    private String book_author;
+
+    @Column(name = "book_image")
+    private byte[] book_image;
+
+    @Column(name = "book_context")
+    private byte[] book_context;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
+
+    public Books(String book_name, String book_author, User user) {
+        this.book_name = book_name;
+        this.book_author = book_author;
+        this.user = user;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getBook_id() {
+        return book_id;
     }
 
-    @Basic
-    @Column(name = "Book_title")
-    public String getBookTitle() {
-        return bookTitle;
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
     }
 
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
+    public String getBook_name() {
+        return book_name;
     }
 
-    @Basic
-    @Column(name = "Book_author")
-    public String getBookAuthor() {
-        return bookAuthor;
+    public void setBook_name(String book_name) {
+        this.book_name = book_name;
     }
 
-    public void setBookAuthor(String bookAuthor) {
-        this.bookAuthor = bookAuthor;
+    public String getBook_author() {
+        return book_author;
     }
 
-    @Basic
-    @Column(name = "Price")
-    public int getPrice() {
-        return price;
+    public void setBook_author(String book_author) {
+        this.book_author = book_author;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public byte[] getBook_image() {
+        return book_image;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Books books = (Books) o;
-
-        if (id != books.id) return false;
-        if (price != books.price) return false;
-        if (bookTitle != null ? !bookTitle.equals(books.bookTitle) : books.bookTitle != null) return false;
-        if (bookAuthor != null ? !bookAuthor.equals(books.bookAuthor) : books.bookAuthor != null) return false;
-
-        return true;
+    public void setBook_image(byte[] book_image) {
+        this.book_image = book_image;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (bookTitle != null ? bookTitle.hashCode() : 0);
-        result = 31 * result + (bookAuthor != null ? bookAuthor.hashCode() : 0);
-        result = 31 * result + price;
-        return result;
+    public byte[] getBook_context() {
+        return book_context;
     }
 
-    @Override
-    public String toString() {
-        return "Books{" +
-                "id=" + id +
-                ", bookTitle='" + bookTitle + '\'' +
-                ", bookAuthor='" + bookAuthor + '\'' +
-                ", price=" + price +
-                '}';
+    public void setBook_context(byte[] book_context) {
+        this.book_context = book_context;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
+
+
 }

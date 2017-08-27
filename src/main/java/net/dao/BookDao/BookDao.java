@@ -1,4 +1,4 @@
-package net.dao;
+package net.dao.BookDao;
 
 import net.model.Books;
 

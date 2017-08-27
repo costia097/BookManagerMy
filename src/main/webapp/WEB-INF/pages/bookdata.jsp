@@ -25,7 +25,7 @@
       word-break: normal;
       border-color: #ccc;
       color: #333;
-      background-color: #fff;
+      background-color: #ff9444;
     }
 
     .tg th {
@@ -50,20 +50,7 @@
 </head>
 <body>
 <h1>Book Details</h1>
-
-<table class="tg">
-  <tr>
-    <th width="80">ID</th>
-    <th width="120">Title</th>
-    <th width="120">Author</th>
-    <th width="120">Price</th>
-  </tr>
-  <tr>
-    <td>${books.id}</td>
-    <td>${books.bookTitle}</td>
-    <td>${books.bookAuthor}</td>
-    <td>${books.price/100}${books.price%100}</td>
-  </tr>
+<h3>Hello ${user}</h3>
 </table>
 </body>
 </html>

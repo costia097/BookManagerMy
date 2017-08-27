@@ -1,13 +1,19 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <html>
 <head>
-  <title>Proselyte</title>
+    <title>Title</title>
 </head>
 <body>
-    <h3>Proselyte presents</h3>
-    <br/>
-      <a href="<c:url value="/books"/>" target="_blank">Book list</a>
-    <br/>
+<h3>If you want to registration  <a href="/registration">Click!!</a></h3>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h3>If you want login <a href="/login">Click!!</a></h3>
+
+<h3>Test</h3>
+<a href="/test">Test</a>
 </body>
 </html>
