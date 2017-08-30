@@ -1,6 +1,7 @@
 package net.dao.BookDao;
 
 import net.model.Books;
+import net.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -18,18 +20,25 @@ import java.util.List;
 public class Book_Dao_Impl implements BookDao {
     private static final Logger log = LoggerFactory.getLogger(Book_Dao_Impl.class);
 
+    @Autowired
     private SessionFactory sessionFactory;
 
-    @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-
-    public void addBook(Books book) {
-        Session session = sessionFactory.getCurrentSession();
-        session.persist(book);
-        log.info("Books added: "+ book);
+    /*
+    So this method must add new Books in db
+     */
+    @Override
+    @Transactional
+    public void addBook(String books, String a, String b, User user) {
+        Session session = sessionFactory.openSession();
+        Books booksi = new Books();
+        booksi.setBook_audio_url(books);
+        booksi.setBook_name(a);
+        booksi.setBook_author(b);
+        booksi.setUser(user);
+        user.getBooks().add(booksi);
+        session.save(booksi);
+        session.close();
+        log.info("Books added: " +books);
     }
 
 

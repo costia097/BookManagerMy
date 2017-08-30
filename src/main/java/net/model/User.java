@@ -23,7 +23,7 @@ public class User implements Serializable {
     private String user_login;
 
     @NotEmpty
-    @Size(min = 4,max = 30,message = "Login title must be from 6 to 20 characters!Bitch")
+    @Size(min = 4,max = 30,message = "Password title must be from 6 to 20 characters!Bitch")
     @Column(name = "user_password")
     private String user_password;
 

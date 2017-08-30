@@ -7,5 +7,9 @@ public interface UserDao {
 
     void deleteUser(User user);
 
-    User checkUser(User user);
+    User checkUserAtLogin(User user);
+
+    User checkUserAtRegistration(User user);
+
+    User takeUser(String s);
 }

@@ -9,4 +9,8 @@ public interface UserService {
 
     int generateCode(User user);
 
+    User checkUserAtRegistration(User user);
+
+    User takeUser(String s);
+
 }

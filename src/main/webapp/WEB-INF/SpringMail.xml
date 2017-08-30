@@ -15,25 +15,24 @@
                 <prop key="mail.smtp.starttls.enable">true</prop>
             </props>
         </property>
-
     </bean>
 
-    <bean id="customeMailMessage"
-          class="org.springframework.mail.SimpleMailMessage">
+    <!--<bean id="customeMailMessage"-->
+          <!--class="org.springframework.mail.SimpleMailMessage">-->
 
-        <property name="from" value="adaw36909@gmail.com" />
-        <property name="to" value="adaw36909@gmail.com" />
-        <property name="subject" value="Testing Subject" />
-        <property name="text">
-            <value>
-                <![CDATA[
-				Dear %s,
-				Mail Content :
-				 %s
-				Have a goof fay sir!
-			]]>
-            </value>
-        </property>
-    </bean>
+        <!--<property name="from" value="adaw36909@gmail.com" />-->
+        <!--<property name="to" value="adaw36909@gmail.com" />-->
+        <!--<property name="subject" value="Testing Subject" />-->
+        <!--<property name="text">-->
+            <!--<value>-->
+                <!--<![CDATA[-->
+				<!--Dear %s,-->
+				<!--Mail Content :-->
+				 <!--%s-->
+				<!--Have a goof day sir!-->
+			<!--]]>-->
+            <!--</value>-->
+        <!--</property>-->
+    <!--</bean>-->
 
 </beans>

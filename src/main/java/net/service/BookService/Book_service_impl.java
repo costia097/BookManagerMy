@@ -1,10 +1,10 @@
 package net.service.BookService;
 
-import net.dao.BookDao.Book_Dao_Impl;
+import net.dao.BookDao.BookDao;
 import net.model.Books;
+import net.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,30 +15,30 @@ import java.util.List;
 public class Book_service_impl implements BookService {
 
     @Autowired
-    private Book_Dao_Impl bookDao;
+    private BookDao bookDao;
 
 
-    @Transactional
-    public void addBook(Books book) {
-        bookDao.addBook(book);
+    @Override
+    public void addBook(String books, String a, String b, User user) {
+        bookDao.addBook(books,a,b,user);
     }
 
-
+    @Override
     public void updateBook(Books books) {
         //TODO
     }
 
-
+    @Override
     public void deleteBook(int id) {
         //TODO
     }
 
-
+    @Override
     public Books getBookById(int id) {
         return null;
     }
 
-
+    @Override
     public List<Books> listBooks() {
         return null;
     }
