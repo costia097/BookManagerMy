@@ -21,13 +21,13 @@
         <form:form action="login" commandName="userLogin" method="post">
             <tr>
                 <td align="left" width="20%">Login: </td>
-                <td align="left" width="40%"><form:input path="user_login" size="30"/></td>
-                <td align="left"><form:errors path="user_login" cssClass="error"/></td>
+                <td align="left" width="40%"><form:input path="userLogin" size="30"/></td>
+                <td align="left"><form:errors path="userLogin" cssClass="error"/></td>
             </tr>
             <tr>
                 <td>Password: </td>
-                <td><form:password path="user_password" size="30"/></td>
-                <td><form:errors path="user_password" cssClass="error"/></td>
+                <td><form:password path="userPassword" size="30"/></td>
+                <td><form:errors path="userPassword" cssClass="error"/></td>
             </tr>
             <tr>
                 <td></td>

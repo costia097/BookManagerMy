@@ -2,6 +2,7 @@ package net.controller;
 
 import net.Config.MailConfig;
 import net.model.User;
+import net.model.UserLoginDTO;
 import net.service.UserService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -31,8 +32,8 @@ public class RegistrationController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String viewRegistration(Model model) {
-        User user = new User();
-        user.setUser_status("unchecked");
+        UserLoginDTO user = new UserLoginDTO();
+        user.setUserStatus("unchecked");
         model.addAttribute("userRegist", user);
         return "registration/registrationFirstForm";
     }
@@ -46,46 +47,29 @@ public class RegistrationController {
      */
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registrationFirstStep(@Valid @ModelAttribute("userRegist")User user, BindingResult result) {
+    public String registrationFirstStep(@Valid @ModelAttribute("userRegist")UserLoginDTO user, BindingResult result) {
         if (result.hasErrors()) {
             return "registration/registrationFirstForm";
         } else {
-            /*
-            Check its
-            */
-            User user1 = userService.checkUserAtRegistration(user);
-            if (user1 == null) {
+            User userMain = userService.takeInfo(user);
+            User chekedUser = userService.checkUserAtRegistration(userMain.getUserLogin(),userMain.getUserEmail());
+            if (chekedUser == null) {
                 return "registration/unsucussesRegistartion";
             }
-            /*
-            Sending Email Validation
-            and save user code
-            */
-            cod = userService.generateCode(user);
-            user.setUser_code(cod);
-            String code = String.valueOf(cod);
+            cod = userService.emailValidation(userMain);
             MailConfig mailMail = (MailConfig) context.getBean("mailConfig");
-            String reserver = user.getUser_email();
-            mailMail.sendMail("adaw36909@gmail.com",reserver,"Its your code",code);
-            /*
-            Save model and send reference to this object
-            */
-            userSave = user;
+            mailMail.sendMail("adaw36909@gmail.com",user.getUserEmail(),"Its your code", String.valueOf(userService.emailValidation(userMain)));
+            userSave = userMain;
             return "registration/RegistrationSecondForm";
         }
     }
 
     @RequestMapping(value = "/checkCode", method = RequestMethod.POST)
     public String checkCode(@ModelAttribute("userRegistr")User user) {
-        if (cod.equals(user.getUser_code())) {
-            boolean b = userService.addUser(userSave);
-            if (b) {
-                return "registration/sucussecRegistartion";
-            } else {
-                return "registration/unsucussesRegistartion";
-            }
-        } else {
-            return "registration/unsucussesRegistartion";
+        if (cod.equals(user.getUserCode())) {
+            boolean userStatus = userService.addUser(userSave);
+           return userStatus ? "registration/sucussecRegistartion" : "registration/unsucussesRegistartion";
         }
+        return "registration/unsucussesRegistartion";
     }
 }

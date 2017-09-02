@@ -1,7 +1,8 @@
 package net.service.UserService;
 
-import net.dao.UserDao.UserDao;
+import net.dao.UserDao.UserRepository;
 import net.model.User;
+import net.model.UserLoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +12,11 @@ import java.util.Random;
 public class UserServiceImp implements UserService {
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userDao;
 
     @Override
     public boolean addUser(User user) {
-        boolean b = userDao.addUser(user);
-        return b;
+        return userDao.addUser(user);
     }
 
     @Override
@@ -24,9 +24,6 @@ public class UserServiceImp implements UserService {
         userDao.deleteUser(user);
     }
 
-    /*
-    So this method must return only + value(int)
-     */
     @Override
     public int generateCode(User user) {
         Random random = new Random();
@@ -38,12 +35,30 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User checkUserAtRegistration(User user) {
-       return userDao.checkUserAtRegistration(user);
+    public User checkUserAtRegistration(String name, String email) {
+       return userDao.checkUserAtRegistration(name, email);
     }
 
     @Override
     public User takeUser(String s) {
         return userDao.takeUser(s);
     }
+
+    @Override
+    public int emailValidation(User user) {
+        int code = generateCode(user);
+        user.setUserCode(code);
+        return code;
+    }
+
+    @Override
+    public User takeInfo(UserLoginDTO userLoginDTO) {
+        User user = new User();
+        user.setUserLogin(user.getUserLogin());
+        user.setUserPassword(user.getUserPassword());
+        user.setUserEmail(user.getUserEmail());
+        user.setUserStatus("cheked");
+        return user;
+    }
+
 }

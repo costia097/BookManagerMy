@@ -1,27 +1,23 @@
 package net.controller;
 
-import net.dao.UserDao.UserDao;
+import net.dao.UserDao.UserRepository;
 import net.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import javax.validation.Valid;
 
 /**
  * Created by BeNdEr on 19.06.2017.
  */
 @Controller
 //@Scope("session")
-public class LoginController {
+public class UserController {
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userDao;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String viewLogin(ModelMap modelMap) {
@@ -33,9 +29,17 @@ public class LoginController {
     /*
     So actually i dont know why validator working not correctly so i just check 2 fields only not empty.
      */
+    /*
+    MODEL DTO
+   1) промежній дто
+    2)ексоптіон обвернуть не все
+   3) все в один сервис
+    service.valid
+
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String hello(@ModelAttribute("userLogin") User user, ModelMap modelMap) {
-        if (user.getUser_login() == null || user.getUser_password() == null) {
+        if (user.getUserLogin() == null || user.getUserPassword() == null) {
             return "login/unsuLoggin";
         } else {
             try {

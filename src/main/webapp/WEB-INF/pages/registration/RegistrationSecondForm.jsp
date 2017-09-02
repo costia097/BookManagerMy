@@ -8,7 +8,7 @@
 
 On your email was sent message with code. Enter here this code to check
 <form:form action="checkCode" commandName="userRegist">
-    <form:password path="user_code"/>
+    <form:password path="userCode"/>
     <td></td>
     <td align="center"><input type="submit" value="Check"/></td>
     <td></td>

@@ -1,8 +1,8 @@
 package net.dao.UserDao;
 
-import net.model.Books;
+import net.model.Book;
 import net.model.User;
-import net.service.IdChekerService;
+import net.model.UserLoginDTO;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,16 +17,17 @@ import java.util.List;
 import java.util.Set;
 
 @Repository
-public class UserDaoImp implements UserDao {
+public class UserRepositoryImp implements UserRepository {
 
-    private static final Logger log = LoggerFactory.getLogger(UserDaoImp.class);
+    private static final Logger log = LoggerFactory.getLogger(UserRepositoryImp.class);
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Autowired
-    private IdChekerService service;
 
+    /*
+    Много всякой всячині Убрать оставить только саве
+     */
 
     @Override
     @Transactional
@@ -35,13 +36,13 @@ public class UserDaoImp implements UserDao {
         /*
         So i have exeptions when iam trying to save just user so i think me need to add some books by default. Must work!!!
          */
-        Set<Books> set = new HashSet<>();
-        Books books1 = new Books("Decadance", "Disturbed", user);
-        books1.setBook_url_img("http://music-pesni.com/main/get_cd_cover/original/2417331a5709e3b2401018e63079fb95");
-        books1.setBook_audio_url("http://music-pesni.com/music/2417331a5709e3b2401018e63079fb95.mp3");
+        Set<Book> set = new HashSet<>();
+        Book books1 = new Book("Decadance", "Disturbed", user);
+        books1.setBookUrlImg("http://music-pesni.com/main/get_cd_cover/original/2417331a5709e3b2401018e63079fb95");
+        books1.setBookAudioUrl("http://music-pesni.com/music/2417331a5709e3b2401018e63079fb95.mp3");
         set.add(books1);
         user.setBooks(set);
-        user.setUser_status("checked");
+        user.setUserStatus("checked");
         currentSession.save(user);
         log.info("User added: " + user);
         return true;
@@ -61,17 +62,21 @@ public class UserDaoImp implements UserDao {
     If user don't exist in db return null.
     If user exist and password correct return this User.
      */
+
+    /*
+    Optional (null)
+     */
     @Override
     @Transactional
     public User checkUserAtLogin(User user) {
         Session currentSession = sessionFactory.getCurrentSession();
-        Query query = currentSession.createQuery("from User where user_login = :param");
-        query.setParameter("param", user.getUser_login());
+        Query query = currentSession.createQuery("from User where userLogin = :param");
+        query.setParameter("param", user.getUserLogin());
         List<User> list = query.list();
         if (list.size() == 0) {
             return null;
         }
-        if (list.get(0).getUser_password().equals(user.getUser_password())) {
+        if (list.get(0).getUserPassword().equals(user.getUserPassword())) {
             User o = list.get(0);
             return o;
         } else {
@@ -86,16 +91,12 @@ public class UserDaoImp implements UserDao {
      */
     @Override
     @Transactional
-    public User checkUserAtRegistration(User user) {
+    public User checkUserAtRegistration(String login, String email) {
         Session currentSession = sessionFactory.getCurrentSession();
-        Query query = currentSession.createQuery("from User");
-        List<User> list = query.list();
-        boolean b = list.stream().anyMatch(user1 -> user1.getUser_login().equals(user.getUser_login()) || user1.getUser_email().equals(user.getUser_email()));
-        if (b) {
-            return null;
-        } else {
-            return user;
-        }
+        Query query = currentSession.createQuery("from User where userLogin = :login and userEmail = :email");
+        query.setParameter("login",login);
+        query.setParameter("email", email);
+        return query.list().size()== 0 ?  null : new User();
     }
 
     /*
@@ -106,13 +107,10 @@ public class UserDaoImp implements UserDao {
     @Transactional
     public User takeUser(String s) {
         Session currentSession = sessionFactory.getCurrentSession();
-        Query query = currentSession.createQuery("from User where user_login = :param");
+        Query query = currentSession.createQuery("from User where userLogin = :param");
         query.setParameter("param", s);
-        List<User> list = query.list();
-        if (list.size() == 0) {
-            return null;
-        }
-        User user = list.get(0);
-        return user;
+        return query.list().size() == 0 ? null : (User) query.list().get(0);
+
+//                вся логика в сервисе а візовы к базе в репозиторие
     }
 }

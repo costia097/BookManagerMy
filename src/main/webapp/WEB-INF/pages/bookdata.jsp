@@ -10,18 +10,18 @@
 </head>
 <body>
 <h1>Book Details</h1>
-<h3>Hello  ${user.user_login}</h3>
+<h3>Hello  ${user.userLogin}</h3>
 
 Add track: <a href="#">Delete</a>
 
 <form:form action="addBook" commandName="user" >
   <tr>
     <td align="left" width="20%">Login: </td>
-    <td align="left" width="40%"><form:input path="user_login" size="30" autocomplete="false"/></td>
+    <td align="left" width="40%"><form:input path="userLogin" size="30" autocomplete="false"/></td>
   </tr>
   <tr>
     <td>Url track: </td>
-    <td><form:input path="user_email" size="30" autocomplete="false"/></td>
+    <td><form:input path="userEmail" size="30" autocomplete="false"/></td>
   </tr>
   <tr>
     <td></td>
@@ -36,11 +36,11 @@ its you tracks:
 <br>
 <c:forEach items="${user.books}" var="books">
   <br>
-  <h2>${books.book_name}</h2> <h3>${books.book_author}</h3>
-  <img src="${books.book_url_img}" alt="альтернативный текст" width="100" height="100">
+  <h2>${books.bookName}</h2> <h3>${books.bookAuthor}</h3>
+  <img src="${books.bookUrlImg}" alt="альтернативный текст" width="100" height="100">
   <br>
   <audio controls>
-    <source src="${books.book_audio_url}" type="audio/mpeg">
+    <source src="${books.bookAudioUrl}" type="audio/mpeg">
   </audio>
 </c:forEach>
 </table>

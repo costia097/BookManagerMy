@@ -1,6 +1,6 @@
 package net.dao.BookDao;
 
-import net.model.Books;
+import net.model.Book;
 import net.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,63 +16,78 @@ import java.util.List;
 /**
  * Created by BeNdEr on 19.06.2017.
  */
+
+/*
+Book repository
+логи в сервисе
+ */
+
 @Repository
-public class Book_Dao_Impl implements BookDao {
-    private static final Logger log = LoggerFactory.getLogger(Book_Dao_Impl.class);
+public class BookRepositoryImpl implements BookRepository {
+    private static final Logger log = LoggerFactory.getLogger(BookRepositoryImpl.class);
 
     @Autowired
     private SessionFactory sessionFactory;
 
     /*
-    So this method must add new Books in db
+    So this method must add new Book in db
      */
     @Override
     @Transactional
     public void addBook(String books, String a, String b, User user) {
         Session session = sessionFactory.openSession();
-        Books booksi = new Books();
-        booksi.setBook_audio_url(books);
-        booksi.setBook_name(a);
-        booksi.setBook_author(b);
+        Book booksi = new Book();
+        booksi.setBookAudioUrl(books);
+        booksi.setBookAuthor(a);
+        booksi.setBookAuthor(b);
         booksi.setUser(user);
         user.getBooks().add(booksi);
         session.save(booksi);
         session.close();
-        log.info("Books added: " +books);
+//        log.info("Book added: " +books)
     }
 
 
-    public void updateBook(Books books) {
+    public void updateBook(Book books) {
         Session session = this.sessionFactory.getCurrentSession();
         session.update(books);
-        log.info("Books was updatied:  "+ books);
+        log.info("Book was updatied:  "+ books);
     }
 
+
+    /*
+    Не изать лоад сесион  просто делит и передать ид
+     */
 
     public void deleteBook(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        Books books = (Books) session.load(Books.class, id);
+        Book books = (Book) session.load(Book.class, id);
         if (books != null) {
             session.delete(books);
-            log.info("Books was deleted: " + books);
+            log.info("Book was deleted: " + books);
         } else {
-            log.info("Books is exist!!!:  "+ books);
+            log.info("Book is exist!!!:  "+ books);
         }
     }
 
 
-    public Books getBookById(int id) {
+    public Book getBookById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        Books books = (Books) session.load(Books.class, id);
-        log.info("Books was sucusesfuly loaded!: "+ books);
+        Book books = (Book) session.load(Book.class, id);
+        log.info("Book was sucusesfuly loaded!: "+ books);
         return books;
     }
 
-    public List<Books> listBooks() {
+    /*
+    лист на букс
+    лог дебаг количество книжек
+    Got {} +size
+       */
+    public List<Book> listBooks() {
         Session session = this.sessionFactory.getCurrentSession();
-        List<Books> list = (List<Books>) session.createQuery("from Books").list();
-        for (Books books : list) {
-            log.info("Books is: "+ books);
+        List<Book> list = (List<Book>) session.createQuery("from Book").list();
+        for (Book books : list) {
+            log.info("Book is: "+ books);
         }
         return list;
     }

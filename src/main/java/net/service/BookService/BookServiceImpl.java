@@ -1,7 +1,7 @@
 package net.service.BookService;
 
-import net.dao.BookDao.BookDao;
-import net.model.Books;
+import net.dao.BookDao.BookRepository;
+import net.model.Book;
 import net.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +12,10 @@ import java.util.List;
  * Created by BeNdEr on 19.06.2017.
  */
 @Service
-public class Book_service_impl implements BookService {
+public class BookServiceImpl implements BookService {
 
     @Autowired
-    private BookDao bookDao;
+    private BookRepository bookDao;
 
 
     @Override
@@ -24,7 +24,7 @@ public class Book_service_impl implements BookService {
     }
 
     @Override
-    public void updateBook(Books books) {
+    public void updateBook(Book books) {
         //TODO
     }
 
@@ -34,12 +34,12 @@ public class Book_service_impl implements BookService {
     }
 
     @Override
-    public Books getBookById(int id) {
+    public Book getBookById(int id) {
         return null;
     }
 
     @Override
-    public List<Books> listBooks() {
+    public List<Book> listBooks() {
         return null;
     }
 }

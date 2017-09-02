@@ -1,6 +1,6 @@
 package net.service.BookService;
 
-import net.model.Books;
+import net.model.Book;
 import net.model.User;
 
 import java.util.List;
@@ -11,11 +11,11 @@ import java.util.List;
 public interface BookService {
     void addBook(String books, String a, String b, User user);
 
-    void updateBook(Books books);
+    void updateBook(Book books);
 
     void deleteBook(int id);
 
-    Books getBookById(int id);
+    Book getBookById(int id);
 
-    List<Books> listBooks();
+    List<Book> listBooks();
 }

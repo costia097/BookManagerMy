@@ -30,9 +30,8 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
-                <value>net.model.Books</value>
+                <value>net.model.Book</value>
                 <value>net.model.User</value>
-                <value>net.model.Test</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -44,8 +43,8 @@
         </property>
     </bean>
 
-    <!--BookDao and BookService beans-->
-    <!--<bean id="bookDao" class="net.dao.BookDao.Book_Dao_Impl">-->
+    <!--BookRepository and BookService beans-->
+    <!--<bean id="bookDao" class="net.dao.BookRepository.Book_Dao_Impl">-->
         <!--<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>-->
     <!--</bean>-->
 

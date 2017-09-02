@@ -22,18 +22,20 @@ public class ContextConroller {
 
     /*
     So this method must take user from user_login with db and
-    add to this user reference to List<Books> so what url was given
+    add to this user reference to List<Book> so what url was given
+     */
+    /*
+    Закинуть все в один сервис и візівать один метод сервіса
      */
     @RequestMapping(value = "/addBook",method = RequestMethod.POST)
     public String add(@ModelAttribute("user")User user) {
-        String user_login = user.getUser_login();
-        String track_url = user.getUser_email();
-        User user_main = service.takeUser(user_login);
+        String userLogin = user.getUserLogin();
+        String trackUrl = user.getUserEmail();
+        User user_main = service.takeUser(userLogin);
         if (user_main == null) {
             return "Context/UnsAdd";
         }
-
-        bookService.addBook(track_url,"test","test",user_main);
+        bookService.addBook(trackUrl,"test","test",user_main);
         return "Context/sucAdd";
     }
 }
