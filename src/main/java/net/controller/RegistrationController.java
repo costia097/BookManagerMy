@@ -47,25 +47,25 @@ public class RegistrationController {
      */
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registrationFirstStep(@Valid @ModelAttribute("userRegist")UserLoginDTO user, BindingResult result) {
+    public String registrationFirstStep(@Valid @ModelAttribute("userRegist")UserLoginDTO userModel, BindingResult result) {
         if (result.hasErrors()) {
             return "registration/registrationFirstForm";
         } else {
-            User userMain = userService.takeInfo(user);
+            User userMain = userService.takeInfo(userModel);
             User chekedUser = userService.checkUserAtRegistration(userMain.getUserLogin(),userMain.getUserEmail());
             if (chekedUser == null) {
                 return "registration/unsucussesRegistartion";
             }
             cod = userService.emailValidation(userMain);
             MailConfig mailMail = (MailConfig) context.getBean("mailConfig");
-            mailMail.sendMail("adaw36909@gmail.com",user.getUserEmail(),"Its your code", String.valueOf(userService.emailValidation(userMain)));
+            mailMail.sendMail("adaw36909@gmail.com",userMain.getUserEmail(),"Its your code", String.valueOf(cod));
             userSave = userMain;
             return "registration/RegistrationSecondForm";
         }
     }
 
     @RequestMapping(value = "/checkCode", method = RequestMethod.POST)
-    public String checkCode(@ModelAttribute("userRegistr")User user) {
+    public String checkCode(@ModelAttribute("userRegistr")UserLoginDTO user) {
         if (cod.equals(user.getUserCode())) {
             boolean userStatus = userService.addUser(userSave);
            return userStatus ? "registration/sucussecRegistartion" : "registration/unsucussesRegistartion";

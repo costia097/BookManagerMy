@@ -35,16 +35,14 @@ public class BookRepositoryImpl implements BookRepository {
     @Override
     @Transactional
     public void addBook(String books, String a, String b, User user) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Book booksi = new Book();
         booksi.setBookAudioUrl(books);
         booksi.setBookAuthor(a);
-        booksi.setBookAuthor(b);
+        booksi.setBookName(b);
         booksi.setUser(user);
         user.getBooks().add(booksi);
         session.save(booksi);
-        session.close();
-//        log.info("Book added: " +books)
     }
 
 

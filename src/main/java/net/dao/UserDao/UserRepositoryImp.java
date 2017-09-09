@@ -96,7 +96,7 @@ public class UserRepositoryImp implements UserRepository {
         Query query = currentSession.createQuery("from User where userLogin = :login and userEmail = :email");
         query.setParameter("login",login);
         query.setParameter("email", email);
-        return query.list().size()== 0 ?  null : new User();
+        return query.list().size()== 0 ?  new User() : null;
     }
 
     /*

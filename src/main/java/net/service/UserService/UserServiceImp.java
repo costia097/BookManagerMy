@@ -54,9 +54,9 @@ public class UserServiceImp implements UserService {
     @Override
     public User takeInfo(UserLoginDTO userLoginDTO) {
         User user = new User();
-        user.setUserLogin(user.getUserLogin());
-        user.setUserPassword(user.getUserPassword());
-        user.setUserEmail(user.getUserEmail());
+        user.setUserLogin(userLoginDTO.getUserLogin());
+        user.setUserPassword(userLoginDTO.getUserPassword());
+        user.setUserEmail(userLoginDTO.getUserEmail());
         user.setUserStatus("cheked");
         return user;
     }

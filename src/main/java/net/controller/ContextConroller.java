@@ -31,11 +31,11 @@ public class ContextConroller {
     public String add(@ModelAttribute("user")User user) {
         String userLogin = user.getUserLogin();
         String trackUrl = user.getUserEmail();
-        User user_main = service.takeUser(userLogin);
-        if (user_main == null) {
+        User userMain = service.takeUser(userLogin);
+        if (userMain == null) {
             return "Context/UnsAdd";
         }
-        bookService.addBook(trackUrl,"test","test",user_main);
+        bookService.addBook(trackUrl,"test","test",userMain);
         return "Context/sucAdd";
     }
 }
