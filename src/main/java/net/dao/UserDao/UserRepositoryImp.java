@@ -3,6 +3,7 @@ package net.dao.UserDao;
 import net.model.Book;
 import net.model.User;
 import net.model.UserLoginDTO;
+import net.service.UserService.UserService;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,6 +25,8 @@ public class UserRepositoryImp implements UserRepository {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Autowired
+    private UserService userService;
 
     /*
     Много всякой всячині Убрать оставить только саве
@@ -33,18 +36,13 @@ public class UserRepositoryImp implements UserRepository {
     @Transactional
     public boolean addUser(User user) {
         Session currentSession = sessionFactory.getCurrentSession();
-        /*
-        So i have exeptions when iam trying to save just user so i think me need to add some books by default. Must work!!!
-         */
-        Set<Book> set = new HashSet<>();
-        Book books1 = new Book("Decadance", "Disturbed", user);
-        books1.setBookUrlImg("http://music-pesni.com/main/get_cd_cover/original/2417331a5709e3b2401018e63079fb95");
-        books1.setBookAudioUrl("http://music-pesni.com/music/2417331a5709e3b2401018e63079fb95.mp3");
-        set.add(books1);
-        user.setBooks(set);
-        user.setUserStatus("checked");
-        currentSession.save(user);
-        log.info("User added: " + user);
+        User user1 = userService.setContext(user);
+        try {
+            currentSession.save(user1);
+        } catch (Exception e) {
+            return false;
+        }
+        log.info("User added: " + user1);
         return true;
     }
 
@@ -93,7 +91,7 @@ public class UserRepositoryImp implements UserRepository {
     @Transactional
     public User checkUserAtRegistration(String login, String email) {
         Session currentSession = sessionFactory.getCurrentSession();
-        Query query = currentSession.createQuery("from User where userLogin = :login and userEmail = :email");
+        Query query = currentSession.createQuery("from User where userLogin = :login or userEmail = :email");
         query.setParameter("login",login);
         query.setParameter("email", email);
         return query.list().size()== 0 ?  new User() : null;

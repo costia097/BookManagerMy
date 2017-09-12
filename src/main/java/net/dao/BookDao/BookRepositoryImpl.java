@@ -42,7 +42,11 @@ public class BookRepositoryImpl implements BookRepository {
         booksi.setBookName(b);
         booksi.setUser(user);
         user.getBooks().add(booksi);
-        session.save(booksi);
+        try {
+            session.save(booksi);
+        } catch (Exception e) {
+            log.debug("Exeption: addBook "+e.getStackTrace().toString());
+        }
     }
 
 

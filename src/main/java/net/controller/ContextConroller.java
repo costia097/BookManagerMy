@@ -5,6 +5,7 @@ import net.model.User;
 import net.service.BookService.BookService;
 import net.service.UserService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,13 +30,11 @@ public class ContextConroller {
      */
     @RequestMapping(value = "/addBook",method = RequestMethod.POST)
     public String add(@ModelAttribute("user")User user) {
-        String userLogin = user.getUserLogin();
-        String trackUrl = user.getUserEmail();
-        User userMain = service.takeUser(userLogin);
+        User userMain = service.takeUser(user.getUserLogin());
         if (userMain == null) {
             return "Context/UnsAdd";
         }
-        bookService.addBook(trackUrl,"test","test",userMain);
+        bookService.addBook(user.getUserEmail(),"test","test",userMain);
         return "Context/sucAdd";
     }
 }

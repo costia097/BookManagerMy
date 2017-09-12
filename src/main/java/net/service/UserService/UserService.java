@@ -18,4 +18,9 @@ public interface UserService {
 
     User takeInfo(UserLoginDTO userLoginDTO);
 
+    void mailSender(User user,Integer cod);
+
+    User setContext(User user);
+
+    Integer getRegistationCode(Thread thread);
 }
