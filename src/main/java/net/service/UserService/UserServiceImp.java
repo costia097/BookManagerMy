@@ -5,6 +5,8 @@ import net.dao.UserDao.UserRepository;
 import net.model.Book;
 import net.model.User;
 import net.model.UserLoginDTO;
+import net.model.UserSaver;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -14,9 +16,14 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Service
 public class UserServiceImp implements UserService {
+    private static final Logger log = Logger.getLogger(UserServiceImp.class);
+
+    private static final Lock lock = new ReentrantLock();
 
     @Autowired
     private UserRepository userDao;
@@ -24,7 +31,7 @@ public class UserServiceImp implements UserService {
     @Autowired
     private ApplicationContext context;
 
-    private static Map<String, Integer> map = new ConcurrentHashMap<>();
+    private static Map<Integer, UserSaver> map = new ConcurrentHashMap<>();
 
     @Override
     public boolean addUser(User user) {
@@ -46,8 +53,18 @@ public class UserServiceImp implements UserService {
         return i;
     }
 
-    public Integer getRegistationCode(Thread thread) {
-        return map.get(thread.getName());
+    public UserSaver getRegistationCode(Integer key) {
+        log.info(map);
+        return map.get(key);
+    }
+
+    @Override
+    public void registrateThread(Integer key,Integer value, User user) {
+        log.info(map);
+        UserSaver userSaver = new UserSaver();
+        userSaver.setCode(value);
+        userSaver.setUserSave(user);
+        map.put(key, userSaver);
     }
 
     @Override
@@ -96,5 +113,6 @@ public class UserServiceImp implements UserService {
         user.setUserStatus("checked");
         return user;
     }
+
 
 }

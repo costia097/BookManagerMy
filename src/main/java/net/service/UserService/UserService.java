@@ -2,6 +2,7 @@ package net.service.UserService;
 
 import net.model.User;
 import net.model.UserLoginDTO;
+import net.model.UserSaver;
 
 public interface UserService {
     boolean addUser(User user);
@@ -22,5 +23,7 @@ public interface UserService {
 
     User setContext(User user);
 
-    Integer getRegistationCode(Thread thread);
+    UserSaver getRegistationCode(Integer key);
+
+    void registrateThread(Integer key,Integer value, User user);
 }

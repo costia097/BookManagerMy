@@ -4,8 +4,6 @@ import net.model.Book;
 import net.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -24,7 +22,6 @@ Book repository
 
 @Repository
 public class BookRepositoryImpl implements BookRepository {
-    private static final Logger log = LoggerFactory.getLogger(BookRepositoryImpl.class);
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -45,7 +42,7 @@ public class BookRepositoryImpl implements BookRepository {
         try {
             session.save(booksi);
         } catch (Exception e) {
-            log.debug("Exeption: addBook "+e.getStackTrace().toString());
+            e.printStackTrace();
         }
     }
 
@@ -53,7 +50,6 @@ public class BookRepositoryImpl implements BookRepository {
     public void updateBook(Book books) {
         Session session = this.sessionFactory.getCurrentSession();
         session.update(books);
-        log.info("Book was updatied:  "+ books);
     }
 
 
@@ -66,9 +62,7 @@ public class BookRepositoryImpl implements BookRepository {
         Book books = (Book) session.load(Book.class, id);
         if (books != null) {
             session.delete(books);
-            log.info("Book was deleted: " + books);
         } else {
-            log.info("Book is exist!!!:  "+ books);
         }
     }
 
@@ -76,7 +70,6 @@ public class BookRepositoryImpl implements BookRepository {
     public Book getBookById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         Book books = (Book) session.load(Book.class, id);
-        log.info("Book was sucusesfuly loaded!: "+ books);
         return books;
     }
 
@@ -89,7 +82,7 @@ public class BookRepositoryImpl implements BookRepository {
         Session session = this.sessionFactory.getCurrentSession();
         List<Book> list = (List<Book>) session.createQuery("from Book").list();
         for (Book books : list) {
-            log.info("Book is: "+ books);
+
         }
         return list;
     }

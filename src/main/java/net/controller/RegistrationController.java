@@ -2,7 +2,10 @@ package net.controller;
 
 import net.model.User;
 import net.model.UserLoginDTO;
+import net.model.UserSaver;
 import net.service.UserService.UserService;
+import net.service.UserService.UserServiceImp;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +19,10 @@ import javax.validation.Valid;
 @Controller
 public class RegistrationController {
 
-    private volatile User userSave;
+    private static final Logger log = Logger.getLogger(UserServiceImp.class);
 
     @Autowired
     private UserService userService;
-
-    private  volatile Integer cod;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String viewRegistration(Model model) {
@@ -37,9 +38,8 @@ public class RegistrationController {
     Password may repeat.
     Query return list Users and just check all af this users for equals email , login.
      */
-
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registrationFirstStep(@Valid @ModelAttribute("userRegist")UserLoginDTO userModel, BindingResult result) {
+    public String registrationFirstStep(@Valid @ModelAttribute("userRegist")UserLoginDTO userModel, BindingResult result,Model model) {
         if (result.hasErrors()) {
             return "registration/registrationFirstForm";
         } else {
@@ -47,17 +47,22 @@ public class RegistrationController {
             if (userService.checkUserAtRegistration(userMain.getUserLogin(),userMain.getUserEmail()) == null) {
                 return "registration/unsucussesRegistartion";
             }
-            userSave = userMain;
-            cod = userService.emailValidation(userMain);
+            Integer cod = userService.emailValidation(userMain);
             userService.mailSender(userMain,cod);
+            Integer i = cod.hashCode();
+            userService.registrateThread(i,cod,userMain);
+            model.addAttribute("kode", i);
             return "registration/RegistrationSecondForm";
         }
     }
 
+
     @RequestMapping(value = "/checkCode", method = RequestMethod.POST)
     public String checkCode(@ModelAttribute("userRegistr")UserLoginDTO user) {
-        if (cod.equals(user.getUserCode())) {
-           return userService.addUser(userSave) ? "registration/sucussecRegistartion" : "registration/unsucussesRegistartion";
+        Integer integerUserPassword = Integer.parseInt(user.getUserPassword());
+        UserSaver userSaver = userService.getRegistationCode(integerUserPassword);
+        if (userSaver.getCode().equals(user.getUserCode())) {
+           return userService.addUser(userSaver.getUserSave()) ? "registration/sucussecRegistartion" : "registration/unsucussesRegistartion";
         }
         return "registration/unsucussesRegistartion";
     }

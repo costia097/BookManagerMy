@@ -21,7 +21,7 @@ public class UserLoginDTO {
 
     private String userStatus;
 
-    private int userCode;
+    private Integer userCode;
 
     public String getUserLogin() {
         return userLogin;
@@ -55,7 +55,7 @@ public class UserLoginDTO {
         this.userStatus = userStatus;
     }
 
-    public int getUserCode() {
+    public Integer getUserCode() {
         return userCode;
     }
 

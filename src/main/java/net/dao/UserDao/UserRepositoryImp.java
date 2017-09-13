@@ -1,26 +1,18 @@
 package net.dao.UserDao;
 
-import net.model.Book;
 import net.model.User;
-import net.model.UserLoginDTO;
 import net.service.UserService.UserService;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public class UserRepositoryImp implements UserRepository {
-
-    private static final Logger log = LoggerFactory.getLogger(UserRepositoryImp.class);
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -42,7 +34,6 @@ public class UserRepositoryImp implements UserRepository {
         } catch (Exception e) {
             return false;
         }
-        log.info("User added: " + user1);
         return true;
     }
 
@@ -50,7 +41,6 @@ public class UserRepositoryImp implements UserRepository {
     public void deleteUser(User user) {
         Session currentSession = sessionFactory.getCurrentSession();
         currentSession.delete(user);
-        log.info("User deleted: " + user);
     }
 
 
