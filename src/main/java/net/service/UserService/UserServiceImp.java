@@ -68,12 +68,14 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User takeInfo(UserLoginDTO userLoginDTO) {
+    public User takeInfo(UserLoginDTO userLoginDTO) throws NullPointerException {
+        if (userLoginDTO == null) {
+            throw new NullPointerException();
+        }
         User user = new User();
         user.setUserLogin(userLoginDTO.getUserLogin());
         user.setUserPassword(userLoginDTO.getUserPassword());
         user.setUserEmail(userLoginDTO.getUserEmail());
-        user.setUserStatus("cheked");
         return user;
     }
 
